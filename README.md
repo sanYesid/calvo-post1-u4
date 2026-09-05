@@ -20,14 +20,14 @@ $ mvn test
 
 ---
 
-### Necesidad-Aprobación por niveles jerárquicos    
+### Necesidad 1 — Aprobación por niveles jerárquicos  
 **Patrón Aplicado:** Chain of Responsibility.
 
 **Justificación Técnica:** Permite organizar los niveles de aprobación (Supervisor, Gerente, Director Financiero) como una cadena flexible de manejadores desacoplados. La solicitud avanza por la cadena hasta que un nivel la aprueba o rechaza. Además, permite anteponer el nivel Revisor de Cumplimiento Normativo para solicitudes de categoría INTERNACIONAL de forma dinámica y sin modificar el código del cliente (ControladorSolicitudes).    
 
 **Patrón Descartado:** Command. Se descartó porque la necesidad central no radica en encapsular operaciones como objetos ejecutables/reversibles, sino en encadenar una serie de decisores independientes donde cada uno decide si resuelve la petición o la delega al siguiente.  
 
-### Necesidad-Ejecución reversible de solicitudes aprobadas
+### Necesidad 2 — Ejecución reversible de solicitudes
 
 **Patrón Aplicado:** Command.    
 **Justificación Técnica:** Encapsula las operaciones discretas sobre los servicios de bajo nivel (PresupuestoService.reservar/liberar y OrdenCompraService.generar/cancelar) en objetos OperacionCommand con sus métodos ejecutar() y deshacer(). El invocador (EjecutorSolicitud) mantiene un historial ordenado y consultable de todas las operaciones realizadas sobre una solicitud —no solo la última— y permite revertir cada operación de forma independiente sin afectar a las demás.
